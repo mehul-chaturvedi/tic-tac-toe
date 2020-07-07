@@ -27,10 +27,10 @@ def play_game():
         check_if_game_over()
         flip_player()
     if winner:
-        print(winner+' won')
+        print(winner+' won.')
         play_again()
     else:
-        print('Nobody won')
+        print('Tie.')
         play_again()
 
 
@@ -84,13 +84,19 @@ def check_if_tie():
 
 # Asks for position to put player mark
 def player_turn():
+    global current_player
+    print(current_player+"'s turn")
     position = input('Choose a position to place your mark: ')
-    position = int(position)
     if len(position):
+        position = int(position)
         if position < 0 or position > 10:
             print('Please choose position between 1 to 9')
             play_new_game()
             return
+    else:
+        print('Please choose position between 1 to 9')
+        play_new_game()
+        return
 
     position = position - 1
     if board[position] != '-':
